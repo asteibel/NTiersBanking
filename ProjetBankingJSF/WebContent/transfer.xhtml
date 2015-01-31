@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:body>
+	
+		<ui:composition template="/template.xhtml">
+		<ui:define name="metadata">
+			<f:metadata>
+				<f:viewParam name="id" required="true" value="#{accountWeb.customerId}"
+					requiredMessage="No Customer selected"
+					validatorMessage="Invalid Customer id selected">
+					<f:validateLongRange minimum="1" />
+				</f:viewParam>
+			</f:metadata>
+		</ui:define>
+			<ui:define name="content">
+			
+			<h3>Effectuer un transfert</h3>
+			
+			<h:form>
+			<tr><td>Compte source </td>
+			<h:selectOneMenu id="frommenu"
+								value="#{accountWeb.transferFrom}" immediate="true">
+								<f:selectItems value="#{accountWeb.allAccounts}" />
+							</h:selectOneMenu>
+							</tr>
+			<tr><td>Compte cible</td>
+			<td><h:selectOneMenu id="tomenu"
+								value="#{accountWeb.transferTo}" immediate="true">
+								<f:selectItems value="#{accountWeb.allAccounts}" />
+							</h:selectOneMenu></td>
+			</tr>
+			<tr>
+			<td>Montant à transferer </td><td><h:inputText value="#{accountWeb.montant}"/></td></tr>
+			
+			
+
+			<h:commandButton value="valider" action="#{accountWeb.transfert}" />
+			</h:form>
+			</ui:define>
+			
+		</ui:composition>
+	</h:body>
+	</html>

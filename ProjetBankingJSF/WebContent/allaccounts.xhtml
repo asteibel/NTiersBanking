@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:body>
+	
+		<ui:composition template="/template.xhtml">
+		<ui:define name="metadata">
+			<f:metadata>
+				<f:viewParam name="id" required="true" value="#{accountWeb.customerId}"
+					requiredMessage="No Customer selected"
+					validatorMessage="Invalid Customer id selected">
+					<f:validateLongRange minimum="1" />
+				</f:viewParam>
+			</f:metadata>
+		</ui:define>
+			<ui:define name="content">
+			
+			<h3>Liste des Comptes</h3>
+			
+			<h:form>
+			<tr><td>Client actuel </td>
+			<td><h:inputText value="#{customerWeb.currentCustomer.name}"/></td></tr>
+			<h:panelGrid columns="3">
+						<h:commandButton value="précédent" action="#{customerWeb.prior}" />
+						<h:commandButton value="suivant" action="#{customerWeb.next}" />
+						<h:commandButton value="Transfert" action="{customerWeb.transfer}"/>
+			</h:panelGrid>
+			
+			
+			<h:dataTable value="#{accountWeb.allAccounts}" var="acc" border="1"
+					cellpadding="2" cellspacing="0">
+			
+			<h:column>
+			<f:facet name="header">ID</f:facet>
+			#{acc.id}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Numéro de compte</f:facet>
+				#{acc.accountNumber}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Solde</f:facet>
+				#{acc.balance}
+			</h:column>
+			
+			<h:column>
+				<h:commandButton value="Retrait" action="#{accountWeb.retraitPage(acc.id)}" />
+			</h:column>
+			<h:column>
+				<h:commandButton value="Dépôt" action="#{accountWeb.depotPage(acc.id)}" />
+			</h:column>
+			
+			</h:dataTable>
+
+			<table>
+			<tr>
+			<td>Compte actuel </td><td><h:inputText value="#{accountWeb.currentAccount.accountNumber}"/></td></tr>
+			
+			</table>
+			<h:panelGrid columns="3">
+			<h:commandButton value="précédent" action="#{accountWeb.prior}" />
+						<h:commandButton value="suivant" action="#{accountWeb.next}" />
+						
+						<h:commandButton value="modifier" action="#{accountWeb.modify}" />
+					</h:panelGrid>
+			</h:form>
+			</ui:define>
+			
+		</ui:composition>
+	</h:body>
+	</html>

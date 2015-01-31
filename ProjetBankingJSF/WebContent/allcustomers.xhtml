@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:body>
+	
+		<ui:composition template="/template.xhtml">
+		<ui:define name="metadata">
+			<f:metadata>
+				<f:viewParam name="id" required="true" value="#{customerWeb.bankId}"
+					requiredMessage="No Bank selected"
+					validatorMessage="Invalid Bank id selected">
+					<f:validateLongRange minimum="1" />
+				</f:viewParam>
+			</f:metadata>
+		</ui:define>
+			<ui:define name="content">
+			
+			<h3>Liste des Clients</h3>
+			
+			<h:form>
+			<tr><td>Banque actuelle </td>
+			<td><h:inputText value="#{bankWeb.currentBank.name}"/></td></tr>
+			<h:panelGrid columns="2">
+						<h:commandButton value="précédent" action="#{bankWeb.prior}" />
+						<h:commandButton value="suivant" action="#{bankWeb.next}" />
+			</h:panelGrid>
+			
+			
+			<h:dataTable value="#{customerWeb.allCustomers}" var="cust" border="1"
+					cellpadding="2" cellspacing="0">
+			
+			<h:column>
+			<f:facet name="header">ID</f:facet>
+			#{cust.id}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Nom</f:facet>
+				#{cust.name}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Ville</f:facet>
+				#{cust.city}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Nombre de comptes</f:facet>
+			#{cust.accounts.size()}
+			</h:column>
+			
+			<h:column>
+				<h:commandButton value="Select" action="#{customerWeb.accounts(cust.id)}" />
+			</h:column>
+			
+			</h:dataTable>
+
+			<table>
+			<tr>
+			<td>Client actuel </td><td><h:inputText value="#{customerWeb.currentCustomer.name}"/></td></tr>
+			
+			</table>
+			<h:panelGrid columns="3">
+			<h:commandButton value="précédent" action="#{customerWeb.prior}" />
+						<h:commandButton value="suivant" action="#{customerWeb.next}" />
+						
+						<h:commandButton value="modifier" action="#{customerWeb.modify}" />
+					</h:panelGrid>
+			</h:form>
+			</ui:define>
+			
+		</ui:composition>
+	</h:body>
+	</html>
