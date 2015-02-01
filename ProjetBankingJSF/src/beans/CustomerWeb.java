@@ -136,7 +136,9 @@ public class CustomerWeb implements Serializable {
 	public void accounts(int customerId) {
 		MBUtils.redirect("allaccounts.xhtml?id=" + customerId);
 	}
-
+	public void transfer(){
+		MBUtils.redirect("transfer.xhtml?id="+currentCustomer.getId());
+	}
 	public int getBankId() {
 		return bankId;
 	}
@@ -150,12 +152,9 @@ public class CustomerWeb implements Serializable {
 	}
 
 	public Customer getCurrentCustomer() {
-		//if (currentCustomer == null
-			//	|| !currentCustomer.getBank().equals(bankWeb.getCurrentBank()))
-		if(currentCustomer==null)
+		if (currentCustomer == null
+				|| !currentCustomer.getBank().equals(bankWeb.getCurrentBank()))
 			getAllCustomers();
-		//if(!currentCustomer.getBank().equals(bankWeb.getCurrentBank()))
-			//getAllCustomers();
 		return currentCustomer;
 	}
 

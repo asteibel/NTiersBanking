@@ -10,7 +10,7 @@
 	<h:body>
 	
 		<ui:composition template="/template.xhtml">
-		<ui:define name="metadata">
+		<!--  <ui:define name="metadata">
 			<f:metadata>
 				<f:viewParam name="id" required="true" value="#{accountWeb.customerId}"
 					requiredMessage="No Customer selected"
@@ -18,7 +18,7 @@
 					<f:validateLongRange minimum="1" />
 				</f:viewParam>
 			</f:metadata>
-		</ui:define>
+		</ui:define>-->
 			<ui:define name="content">
 			
 			<h3>Liste des Comptes</h3>
@@ -64,6 +64,22 @@
 			<tr>
 			<td>Compte actuel </td><td><h:inputText value="#{accountWeb.currentAccount.accountNumber}"/></td></tr>
 			
+						<tr>
+							<td><p:outputLabel value="Solde :" /></td>
+							<td><p:inputText value="#{accountWeb.currentAccount.balance}" /></td>
+						</tr>
+						<tr>
+							<td><p:outputLabel value="Taux d'interet:" /></td>
+							<td><p:inputText value="#{accountWeb.currentAccount.interestRate}" /></td>
+						</tr>
+						<tr>
+							<td><p:outputLabel value="Découvert autorisé:" /></td>
+							<td><p:inputText value="#{accountWeb.currentAccount.overdraftPenalty}" /></td>
+						</tr>
+						<tr>
+							<td><p:outputLabel value="Limite de découvert : " /></td>
+							<td><p:inputText value="#{account.currentAccount.overdraftLimit}" /></td>
+						</tr>
 			</table>
 			<h:panelGrid columns="3">
 			<h:commandButton value="précédent" action="#{accountWeb.prior}" />

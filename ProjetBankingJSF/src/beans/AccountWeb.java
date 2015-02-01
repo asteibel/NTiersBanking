@@ -1,9 +1,7 @@
 package beans;
 
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -13,8 +11,6 @@ import javax.faces.bean.SessionScoped;
 import tp.ejb.AccountDaoBean;
 import tp.ejb.TransferDao;
 import domain.model.Account;
-import domain.model.Bank;
-import domain.model.City;
 import domain.model.Customer;
 import domain.model.Transfer;
 
