@@ -176,7 +176,7 @@ public class AccountDaoBean implements AccountDao, Serializable {
 
 	
 	public List<Account> populate(Customer c) {
-		for (int i =0; i<randomGenerator.nextInt(10);i++)
+		for (int i =0; i<randomGenerator.nextInt(10)+1;i++)
 		   createRandom(c);
 		return new ArrayList<Account>(c.getAccounts());
 	}
