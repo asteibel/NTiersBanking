@@ -13,7 +13,7 @@
 			<ui:define name="content">
 			
 			<h3>Liste des Banques</h3>
-			<h:form>
+			<h:form id="form">
 			
 			<h:dataTable value="#{bankWeb.allBanks}" var="bank" border="1"
 					cellpadding="2" cellspacing="0">
@@ -40,9 +40,7 @@
 			#{bank.customers.size()}
 			</h:column>
 			
-			<h:column>
-				<h:commandButton value="Select" action="#{bankWeb.customers(bank.id)}" />
-			</h:column>
+
 			
 			</h:dataTable>
 			<table>
@@ -56,11 +54,15 @@
 							</h:selectOneMenu>
 						</td></tr>
 			</table>
-			<h:panelGrid columns="3">
-						<h:commandButton value="précédent" action="#{bankWeb.prior}" />
-						<h:commandButton value="suivant" action="#{bankWeb.next}" />
+			<h:panelGrid columns="4">
+						<h:commandButton value="précédent" action="#{bankWeb.prior}" update="form" />
+						<h:commandButton value="suivant" action="#{bankWeb.next}" update="form"/>
 						
-						<h:commandButton value="modifier" action="#{bankWeb.modify}" />
+						<h:commandButton value="modifier" action="#{bankWeb.modify}" update="form"/>
+					
+									
+					<h:commandButton value="Clients" action="#{bankWeb.customers(bankWeb.currentBank.id)}" update="form" />
+			
 					</h:panelGrid>
 			</h:form>
 			</ui:define>

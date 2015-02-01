@@ -55,9 +55,6 @@
 			#{cust.accounts.size()}
 			</h:column>
 			
-			<h:column>
-				<h:commandButton value="Select" action="#{customerWeb.accounts(cust.id)}" />
-			</h:column>
 			
 			</h:dataTable>
 
@@ -66,11 +63,14 @@
 			<td>Client actuel </td><td><h:inputText value="#{customerWeb.currentCustomer.name}"/></td></tr>
 			
 			</table>
-			<h:panelGrid columns="3">
+			<h:panelGrid columns="4">
 			<h:commandButton value="précédent" action="#{customerWeb.prior}" />
 						<h:commandButton value="suivant" action="#{customerWeb.next}" />
 						
 						<h:commandButton value="modifier" action="#{customerWeb.modify}" />
+						
+				<h:commandButton value="Comptes" action="#{customerWeb.accounts(customerWeb.currentCustomer.id)}" />
+			
 					</h:panelGrid>
 			</h:form>
 			</ui:define>
