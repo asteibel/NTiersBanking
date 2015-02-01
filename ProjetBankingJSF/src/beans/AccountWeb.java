@@ -131,7 +131,7 @@ public class AccountWeb implements Serializable{
 		MBUtils.redirect("allaccounts.xhtml?id"+customerId);
 	}
 	public void depot(){
-		accountDao.withdrawAccount(currentAccount, -montant);
+		accountDao.addToAccount(currentAccount, montant);
 		MBUtils.redirect("allaccounts.xhtml?id"+customerId);
 	}
 	public void retraitPage(int accountId){

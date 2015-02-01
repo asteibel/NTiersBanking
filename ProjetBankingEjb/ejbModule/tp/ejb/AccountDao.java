@@ -30,6 +30,7 @@ public interface AccountDao {
 	Account createAccount(Customer c, double overdraftLimit, double overdraftPenalty);
 	void creditAccount(Account account, double amount);
 	void withdrawAccount(Account account, double amount);
+	void addToAccount(Account account, double amount);
 	void transferAccount(Account from, Account to, double amount);
 	
     void testAccount(Customer customer);

@@ -220,5 +220,12 @@ public class AccountDaoBean implements AccountDao, Serializable {
 		account.setBalance(account.getBalance() - amount);
 		em.merge(account);
 	}
+	
+	public void addToAccount(Account account, double amount){
+		if(amount<=0)
+			throw new RuntimeException("null or negative");
+		account.setBalance(account.getBalance()+amount);
+		em.merge(account);
+	}
 
 }
