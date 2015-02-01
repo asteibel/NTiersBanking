@@ -10,7 +10,7 @@
 	<h:body>
 	
 		<ui:composition template="/template.xhtml">
-		<ui:define name="metadata">
+		<!--  <ui:define name="metadata">
 			<f:metadata>
 				<f:viewParam name="id" required="true" value="#{accountWeb.accountId}"
 					requiredMessage="No Customer selected"
@@ -18,16 +18,25 @@
 					<f:validateLongRange minimum="1" />
 				</f:viewParam>
 			</f:metadata>
-		</ui:define>
+		</ui:define>-->
 			<ui:define name="content">
 			
 			<h3>Effectuer un retrait</h3>
 			
 			<h:form>
-			<tr><td>Compte actuel </td>
-			<td><h:inputText value="#{accountWeb.currentAccount.accountNumber}"/></td></tr>
-			<td><h:inputText value="#{accountWeb.currentAccount.balance}"></h:inputText></td>
+			<table>
+			<tr>
+			<td>Compte actuel </td><td><h:inputText value="#{accountWeb.currentAccount.accountNumber}"/></td></tr>
 			
+						<tr>
+							<td><p:outputLabel value="Solde :" /></td>
+							<td><p:inputText value="#{accountWeb.currentAccount.balance}" /></td>
+						</tr>
+						<tr>
+							<td><p:outputLabel value="Propiétaire :" /></td>
+							<td><p:inputText value="#{accountWeb.currentAccount.owner.name}" /></td>
+						</tr>
+						</table>
 			
 			
 

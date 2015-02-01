@@ -51,12 +51,7 @@
 				#{acc.balance}
 			</h:column>
 			
-			<h:column>
-				<h:commandButton value="Retrait" action="#{accountWeb.retraitPage(acc.id)}" />
-			</h:column>
-			<h:column>
-				<h:commandButton value="Dépôt" action="#{accountWeb.depotPage(acc.id)}" />
-			</h:column>
+			
 			
 			</h:dataTable>
 
@@ -78,14 +73,20 @@
 						</tr>
 						<tr>
 							<td><p:outputLabel value="Limite de découvert : " /></td>
-							<td><p:inputText value="#{account.currentAccount.overdraftLimit}" /></td>
+							<td><p:inputText value="#{accountWeb.currentAccount.overdraftLimit}" /></td>
 						</tr>
 			</table>
-			<h:panelGrid columns="3">
+			<h:panelGrid  columns="5">
 			<h:commandButton value="précédent" action="#{accountWeb.prior}" />
 						<h:commandButton value="suivant" action="#{accountWeb.next}" />
 						
 						<h:commandButton value="modifier" action="#{accountWeb.modify}" />
+					
+				<h:commandButton value="Retrait" action="#{accountWeb.retraitPage(accountWeb.currentAccount.id)}" />
+			
+				<h:commandButton value="Dépôt" action="#{accountWeb.depotPage(accountWeb.currentAccount.id))}" />
+			
+					
 					</h:panelGrid>
 			</h:form>
 			</ui:define>
